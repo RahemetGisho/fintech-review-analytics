@@ -1,0 +1,12 @@
+pandas
+numpy
+google-play-scraper
+matplotlib
+seaborn
+scikit-learn
+nltk
+spacy
+transformers
+torch
+pytest
+jupyter
