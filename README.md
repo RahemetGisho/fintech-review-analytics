@@ -4,16 +4,16 @@ Customer Experience Analytics for Ethiopian Fintech Applications using Google Pl
 
 ---
 
-# Project Overview
+# 📌 Project Overview
 
-This project analyzes customer reviews from Ethiopian banking applications on the Google Play Store. The goal is to transform raw customer feedback into actionable business insights through:
+This project analyzes customer reviews from Ethiopian banking applications on the Google Play Store and transforms raw customer feedback into actionable business insights using:
 
 - Web Scraping
 - Data Preprocessing
 - Sentiment Analysis
 - Thematic Analysis
 - PostgreSQL Database Engineering
-- Business Intelligence & Visualization
+- Data Visualization & Business Insights
 
 The project focuses on three Ethiopian banks:
 
@@ -23,12 +23,10 @@ The project focuses on three Ethiopian banks:
 
 ---
 
-# Project Structure
+# 📁 Project Structure
 
 ```text
 fintech-review-analytics/
-├── .vscode/
-│   └── settings.json
 ├── .github/
 │   └── workflows/
 │       └── unittests.yml
@@ -37,17 +35,12 @@ fintech-review-analytics/
 │   ├── processed/
 │   └── analyzed/
 ├── notebooks/
-│   ├── __init__.py
 │   ├── task2_analysis.ipynb
-│   └── README.md
-├── scripts/
-│   ├── __init__.py
-│   └── README.md
+│   └── task4_insights.ipynb
 ├── sql/
 │   ├── schema.sql
 │   └── verification_queries.sql
 ├── src/
-│   ├── __init__.py
 │   ├── scraper.py
 │   ├── preprocess.py
 │   ├── sentiment_analysis.py
@@ -56,17 +49,13 @@ fintech-review-analytics/
 │   ├── db_connection.py
 │   └── load_to_postgres.py
 ├── tests/
-│   ├── __init__.py
-│   ├── test_basic.py
-│   └── test_preprocess.py
-├── .gitignore
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-# Technologies Used
+# 🛠️ Technologies Used
 
 ## Programming & Data Processing
 
@@ -78,7 +67,7 @@ fintech-review-analytics/
 
 - google-play-scraper
 
-## Natural Language Processing
+## NLP & Machine Learning
 
 - Hugging Face Transformers
 - DistilBERT
@@ -91,37 +80,34 @@ fintech-review-analytics/
 - SQLAlchemy
 - psycopg2
 
-## Testing & CI/CD
+## Visualization
 
-- pytest
-- GitHub Actions
+- Matplotlib
+- Seaborn
+- WordCloud
 
 ## Development Tools
 
 - Git & GitHub
 - Jupyter Notebook
 - VS Code
+- GitHub Actions
 
 ---
 
-# Task 1 — Data Collection and Preprocessing
+# 🗂️ Task 1 — Data Collection & Preprocessing
 
-## Objective
+## 🎯 Objective
 
-The objective of Task 1 was to:
-
-- Scrape customer reviews from Google Play Store
-- Clean and preprocess the data
-- Prepare an analysis-ready dataset
-- Apply proper GitHub workflow and CI/CD practices
+- Scrape Google Play Store reviews
+- Clean and preprocess customer feedback
+- Prepare analysis-ready dataset
 
 ---
 
-# Data Collection Methodology
+# 📊 Data Collection
 
-## Data Source
-
-Reviews were collected from the Google Play Store using the `google-play-scraper` Python library.
+Reviews were collected using the `google-play-scraper` Python library.
 
 ## Target Applications
 
@@ -133,51 +119,30 @@ Reviews were collected from the Google Play Store using the `google-play-scraper
 
 ---
 
-# Data Collected
+# 📈 Dataset Summary
 
-The following fields were collected:
-
-- Review text
-- Rating (1–5)
-- Review date
-- Bank name
-- Source
-
----
-
-# Scraping Configuration
-
-- Language: English
-- Country: Ethiopia (`et`)
-- Sort Order: Newest Reviews
-- Reviews Collected: 400 per bank
+| Bank      | Reviews  |
+| --------- | -------- |
+| CBE       | 400      |
+| BOA       | 400      |
+| Dashen    | 400      |
+| **Total** | **1200** |
 
 ---
 
-# Total Reviews Collected
-
-| Bank   | Reviews |
-| ------ | ------- |
-| CBE    | 400     |
-| BOA    | 400     |
-| Dashen | 400     |
-| Total  | 1200    |
-
----
-
-# Preprocessing Steps
+# 🧹 Preprocessing Steps
 
 The following preprocessing operations were performed:
 
 1. Removed duplicate reviews
 2. Handled missing values
-3. Normalized dates to `YYYY-MM-DD`
-4. Selected required columns only
-5. Saved cleaned dataset for downstream analysis
+3. Normalized dates
+4. Selected required columns
+5. Saved cleaned dataset
 
 ---
 
-# Final Cleaned Dataset Columns
+# 📌 Final Dataset Columns
 
 - `review`
 - `rating`
@@ -187,7 +152,7 @@ The following preprocessing operations were performed:
 
 ---
 
-# Data Quality Summary
+# 📊 Data Quality Summary
 
 | Metric                 | Result |
 | ---------------------- | ------ |
@@ -197,59 +162,36 @@ The following preprocessing operations were performed:
 | Duplicate Rows Removed | 0      |
 | Final Dataset Size     | 1200   |
 
-The dataset satisfies the project KPI requirement of collecting more than 1200 reviews with less than 5% missing data.
-
 ---
 
-# Task 2 — Sentiment and Thematic Analysis
+# 🧠 Task 2 — Sentiment & Thematic Analysis
 
-## Objective
-
-The objective of Task 2 was to:
+## 🎯 Objective
 
 - Quantify customer sentiment
-- Identify recurring business themes
-- Extract customer pain points and satisfaction drivers
-- Build a reusable NLP pipeline
+- Identify recurring themes
+- Extract customer pain points
+- Build reusable NLP pipeline
 
 ---
 
-# Sentiment Analysis
+# 🤖 Sentiment Analysis
 
 ## Model Used
-
-The project used:
 
 ```text
 distilbert-base-uncased-finetuned-sst-2-english
 ```
 
-from Hugging Face Transformers.
-
-This transformer model was selected because it:
-
-- provides strong sentiment classification performance
-- is lightweight and efficient
-- performs well on short customer reviews
-
----
-
-# Sentiment Classification
-
-Each review was classified into:
+The model classifies reviews into:
 
 - Positive
 - Negative
-
-Additionally:
-
-- sentiment confidence scores were generated for every review
+- Neutral
 
 ---
 
-# Sentiment Analysis Output
-
-The sentiment analysis dataset contains:
+# 📌 Sentiment Output Columns
 
 - `review`
 - `rating`
@@ -262,19 +204,17 @@ The sentiment analysis dataset contains:
 
 ---
 
-# NLP Pipeline
+# 🔤 NLP Pipeline
 
-A modular NLP pipeline was implemented using NLTK.
+Implemented using NLTK with:
 
-The pipeline performs:
+- Tokenization
+- Lowercasing
+- Stop-word removal
+- Lemmatization
+- Text normalization
 
-- tokenization
-- lowercasing
-- stop-word removal
-- optional lemmatization
-- text normalization
-
-The pipeline was implemented inside:
+Pipeline file:
 
 ```text
 src/nlp_pipeline.py
@@ -282,17 +222,9 @@ src/nlp_pipeline.py
 
 ---
 
-# Thematic Analysis
+# 🏷️ Thematic Analysis
 
-## Objective
-
-Thematic analysis was used to identify recurring business-relevant customer concerns and satisfaction patterns.
-
----
-
-# Theme Identification
-
-The following themes were identified:
+## Identified Themes
 
 - Account Access Issues
 - Transaction Performance
@@ -302,9 +234,9 @@ The following themes were identified:
 
 ---
 
-# Keyword Extraction
+# 🔑 Keyword Extraction
 
-TF-IDF and n-gram extraction were used to identify significant keywords and recurring phrases such as:
+TF-IDF and n-gram extraction identified recurring keywords such as:
 
 - login error
 - slow transfer
@@ -314,23 +246,7 @@ TF-IDF and n-gram extraction were used to identify significant keywords and recu
 
 ---
 
-# Grouping Logic
-
-Keywords with similar semantic meaning were grouped into broader business themes.
-
-Example:
-
-| Keywords                | Theme                   |
-| ----------------------- | ----------------------- |
-| login, otp, password    | Account Access Issues   |
-| transfer, payment, slow | Transaction Performance |
-| ui, interface, design   | UI & Design             |
-
----
-
-# Final Thematic Analysis Dataset
-
-The final thematic analysis dataset contains:
+# 📌 Final Thematic Dataset
 
 - `review_id`
 - `review_text`
@@ -340,90 +256,166 @@ The final thematic analysis dataset contains:
 
 ---
 
-# Task 3 — PostgreSQL Database Integration
+# 🗄️ Task 3 — PostgreSQL Database Integration
 
-## Objective
+## 🎯 Objective
 
-The objective of Task 3 was to:
-
-- design a relational database schema
-- store processed review data persistently
-- simulate a real-world data engineering workflow
+Store processed review data in PostgreSQL.
 
 ---
 
-# PostgreSQL Database Setup
+# 🧱 Database Schema
 
-A PostgreSQL database named:
+## 🏦 Banks Table
 
-```text
-bank_reviews
-```
-
-was created locally.
-
----
-
-# Database Schema
-
-## Banks Table
-
-Stores metadata about each bank application.
-
-### Columns
-
-| Column    | Description      |
-| --------- | ---------------- |
-| bank_id   | Primary Key      |
-| bank_name | Bank Name        |
-| app_name  | Application Name |
+| Column    | Description     |
+| --------- | --------------- |
+| bank_id   | Primary Key     |
+| bank_name | Bank Name       |
+| app_name  | Mobile App Name |
 
 ---
 
-## Reviews Table
+## 📝 Reviews Table
 
-Stores processed customer review data.
-
-### Columns
-
-| Column           | Description              |
-| ---------------- | ------------------------ |
-| review_id        | Primary Key              |
-| bank_id          | Foreign Key              |
-| review_text      | Customer Review          |
-| rating           | User Rating              |
-| review_date      | Review Date              |
-| sentiment_label  | Sentiment Classification |
-| sentiment_score  | Sentiment Confidence     |
-| identified_theme | Extracted Theme          |
-| source           | Review Source            |
+| Column           | Description      |
+| ---------------- | ---------------- |
+| review_id        | Primary Key      |
+| bank_id          | Foreign Key      |
+| review_text      | Customer Review  |
+| rating           | Star Rating      |
+| review_date      | Review Date      |
+| sentiment_label  | NLP Sentiment    |
+| sentiment_score  | Confidence Score |
+| identified_theme | Extracted Theme  |
+| source           | Review Source    |
 
 ---
 
-# Database Engineering Workflow
+# ⚙️ ETL Workflow
 
-The PostgreSQL ETL workflow performs:
+The PostgreSQL ETL pipeline performs:
 
-1. Load processed review data
+1. Load cleaned dataset
 2. Generate review IDs
-3. Merge thematic analysis output
-4. Map bank IDs
-5. Transform schema
-6. Insert records into PostgreSQL
+3. Map bank names to `bank_id`
+4. Merge sentiment and thematic outputs
+5. Insert records into PostgreSQL
 
 ---
 
-# SQL Verification Queries
+# 🧪 SQL Validation
 
-Verification queries were executed to:
+Verification queries were used to:
 
-- count reviews per bank
-- compute average ratings
-- validate missing values
+- Count reviews per bank
+- Compute average ratings
+- Check null values
 
 ---
 
-# Running the Project
+# 📈 Task 4 — Insights & Recommendations
+
+## 🎯 Objective
+
+Convert review analysis into business-actionable insights.
+
+---
+
+# 📊 Satisfaction Drivers
+
+## 🟦 Commercial Bank of Ethiopia (CBE)
+
+### Drivers
+
+- Positive UI and usability feedback
+- Smooth app navigation experience
+
+---
+
+## 🟩 Bank of Abyssinia (BOA)
+
+### Drivers
+
+- Helpful customer support feedback
+- Good usability experience
+
+---
+
+## 🟨 Dashen Bank
+
+### Drivers
+
+- Easy-to-use interface
+- Positive transaction experience
+
+---
+
+# ❌ Pain Points
+
+## 🟦 Commercial Bank of Ethiopia (CBE)
+
+### Pain Points
+
+- OTP and login failures
+- Slow transaction processing
+
+---
+
+## 🟩 Bank of Abyssinia (BOA)
+
+### Pain Points
+
+- Authentication issues
+- Slow app response time
+
+---
+
+## 🟨 Dashen Bank
+
+### Pain Points
+
+- App lag during transactions
+- Performance instability
+
+---
+
+# 💡 Recommendations
+
+## 🟦 CBE
+
+- Improve OTP delivery infrastructure
+- Optimize transaction processing speed
+
+---
+
+## 🟩 BOA
+
+- Strengthen authentication reliability
+- Introduce AI chatbot support
+
+---
+
+## 🟨 Dashen
+
+- Improve backend scalability
+- Optimize API performance
+
+---
+
+# 📊 Visualizations
+
+The project includes:
+
+1. Sentiment Distribution by Bank
+2. Rating Distribution Boxplots
+3. Theme Frequency Analysis
+4. WordCloud Visualizations
+5. Sentiment Trend Analysis
+
+---
+
+# 🚀 Running the Project
 
 ## Clone Repository
 
@@ -434,9 +426,7 @@ cd fintech-review-analytics
 
 ---
 
-# Create Virtual Environment
-
-## Windows
+# 🐍 Create Virtual Environment
 
 ```bash
 python -m venv .venv
@@ -445,7 +435,7 @@ python -m venv .venv
 
 ---
 
-# Install Dependencies
+# 📦 Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -453,47 +443,19 @@ pip install -r requirements.txt
 
 ---
 
-# Run Web Scraper
+# ▶️ Run Pipeline
 
 ```bash
 python src/scraper.py
-```
-
----
-
-# Run Preprocessing
-
-```bash
 python src/preprocess.py
-```
-
----
-
-# Run Sentiment Analysis
-
-```bash
 python -m src.sentiment_analysis
-```
-
----
-
-# Run Theme Analysis
-
-```bash
 python -m src.theme_analysis
-```
-
----
-
-# Run PostgreSQL Loader
-
-```bash
 python -m src.load_to_postgres
 ```
 
 ---
 
-# Run Tests
+# 🧪 Testing
 
 ```bash
 pytest
@@ -501,13 +463,13 @@ pytest
 
 ---
 
-# CI/CD Pipeline
+# ⚙️ CI/CD Pipeline
 
-GitHub Actions is configured to:
+GitHub Actions automatically:
 
-- install dependencies
-- run automated tests
-- validate project integrity on every push to `main`
+- installs dependencies
+- runs tests
+- validates project integrity
 
 Workflow file:
 
@@ -517,24 +479,19 @@ Workflow file:
 
 ---
 
-# Limitations Encountered
+# ⚠️ Limitations
 
-- Some reviews contain emojis and multilingual text.
-- Transformer models may misclassify short or ambiguous reviews.
-- Google Play review availability depends on public review access.
-- Review ordering may change over time as new reviews are added.
-
----
-
-# Future Work
-
-Future project improvements may include:
-
-- Interactive dashboards
-- Advanced topic modeling
-- Recommendation systems
-- Real-time review monitoring
-- Comparative banking analytics
-- Customer churn prediction
+- Short reviews reduce NLP accuracy
+- Some themes are grouped under “Other”
+- Multilingual text affects sentiment classification
+- Limited time-series depth for trend analysis
 
 ---
+
+# 🔮 Future Work
+
+- Interactive dashboards (Power BI / Streamlit)
+- Advanced topic modeling (LDA / NMF)
+- Real-time review monitoring system
+- AI-powered customer support chatbot
+- Customer churn prediction models
